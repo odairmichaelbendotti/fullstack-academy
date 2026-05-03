@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #090a0b;
-  --surface: #111315;
+  --bg: #000000;
+  --surface: #090a0b;
   --primary: #f59e0b;
   --secondary: #d97706;
   --textPrimary: #fffbeb;
   --textSecondary: #b8b2a7;
+  --outline: #1a1a1a;
 }
 
 @theme inline {
@@ -16,6 +17,7 @@
   --color-secondary: var(--secondary);
   --color-textPrimary: var(--textPrimary);
   --color-textSecondary: var(--textSecondary);
+  --color-outline: var(--outline);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
