@@ -3,12 +3,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff, Mail, Lock, ChevronRight } from "lucide-react";
-
-interface SignInFormData {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-}
+import { LoginFormData, loginSchema } from "@/lib/validation/login.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface SignInProps {
   onToggle: () => void;
@@ -21,10 +17,13 @@ export default function SignIn({ onToggle }: SignInProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInFormData>();
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { rememberMe: false },
+  });
 
-  const onSubmit = (data: SignInFormData) => {
-    console.log("Login:", data);
+  const onSubmit = (data: LoginFormData) => {
+    console.log(data);
   };
 
   return (
@@ -42,14 +41,7 @@ export default function SignIn({ onToggle }: SignInProps) {
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
-              {...register("email", {
-                required: "E-mail obrigatório",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "E-mail inválido",
-                },
-              })}
-              type="email"
+              {...register("email")}
               placeholder="seu@email.com"
               className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
             />
@@ -64,7 +56,7 @@ export default function SignIn({ onToggle }: SignInProps) {
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
-              {...register("password", { required: "Senha obrigatória" })}
+              {...register("password")}
               type={showPassword ? "text" : "password"}
               placeholder="••••••"
               className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -93,6 +85,7 @@ export default function SignIn({ onToggle }: SignInProps) {
             <input
               {...register("rememberMe")}
               type="checkbox"
+              defaultChecked={false}
               className="w-3.5 h-3.5 rounded border-outline bg-surface text-primary focus:ring-primary"
             />
             <span className="text-textSecondary cursor-pointer">

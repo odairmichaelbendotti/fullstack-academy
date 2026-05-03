@@ -215,7 +215,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
           </div>
           <div>
             <label className="block text-xs text-textSecondary mb-1.5">
-              Confirmar
+              Confirme a senha
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
