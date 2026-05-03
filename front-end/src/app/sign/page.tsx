@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import SignIn from "@/components/SignIn";
 import SignUp from "@/components/SignUp";
+import Link from "next/link";
 
 export default function SignPage() {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -15,14 +16,16 @@ export default function SignPage() {
       <div className="hidden lg:flex lg:w-3/5 flex-col items-center justify-center p-12 bg-linear-to-br from-bg via-surface to-bg">
         <div className="flex flex-col items-center text-center">
           <div className="w-32 h-32 mb-6">
-            <Image
-              src="/logo.png"
-              alt="Fullstack Academy"
-              width={128}
-              height={128}
-              className="object-contain opacity-90"
-              priority
-            />
+            <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="Fullstack Academy"
+                width={128}
+                height={128}
+                className="object-contain opacity-90"
+                priority
+              />
+            </Link>
           </div>
           <h1 className="text-2xl font-medium text-textPrimary mb-2">
             Fullstack Academy
@@ -39,14 +42,16 @@ export default function SignPage() {
           {/* Mobile Logo */}
           <div className="lg:hidden flex flex-col items-center mb-6">
             <div className="w-20 h-20 mb-3">
-              <Image
-                src="/logo.png"
-                alt="Fullstack Academy"
-                width={80}
-                height={80}
-                className="object-contain"
-                priority
-              />
+              <Link href="/">
+                <Image
+                  src="/logo.png"
+                  alt="Fullstack Academy"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                  priority
+                />
+              </Link>
             </div>
             <h1 className="text-lg font-medium text-textPrimary">
               Fullstack Academy

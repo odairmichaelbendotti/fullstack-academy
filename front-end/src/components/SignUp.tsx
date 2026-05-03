@@ -2,18 +2,12 @@
 
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Mail, Lock, Calendar } from "lucide-react";
-
-interface SignUpFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  birthDate: string;
-  password: string;
-  confirmPassword: string;
-  acceptTerms: boolean;
-}
+import {
+  RegisterFormData,
+  registerSchema,
+} from "@/lib/validation/register.schema";
 
 interface SignUpProps {
   onToggle: () => void;
@@ -26,9 +20,6 @@ const formatPhone = (value: string): string => {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
 };
 
-const validatePhone = (phone: string): boolean =>
-  phone.replace(/\D/g, "").length === 11;
-
 export default function SignUp({ onToggle }: SignUpProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -38,9 +29,11 @@ export default function SignUp({ onToggle }: SignUpProps) {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<SignUpFormData>();
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+  });
 
-  const onSubmit = (data: SignUpFormData) => console.log("Cadastro:", data);
+  const onSubmit = (data: RegisterFormData) => console.log("Cadastro:", data);
 
   return (
     <div className="w-full animate-in fade-in slide-in-from-right-4 duration-500">
@@ -59,10 +52,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
               Nome
             </label>
             <input
-              {...register("firstName", {
-                required: "Obrigatório",
-                minLength: { value: 2, message: "Mínimo 2 caracteres" },
-              })}
+              {...register("firstName")}
               type="text"
               placeholder="Nome"
               className="w-full px-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -78,10 +68,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
               Sobrenome
             </label>
             <input
-              {...register("lastName", {
-                required: "Obrigatório",
-                minLength: { value: 2, message: "Mínimo 2 caracteres" },
-              })}
+              {...register("lastName")}
               type="text"
               placeholder="Sobrenome"
               className="w-full px-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -102,13 +89,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
-              {...register("email", {
-                required: "E-mail obrigatório",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "E-mail inválido",
-                },
-              })}
+              {...register("email")}
               type="email"
               placeholder="seu@email.com"
               className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -128,10 +109,6 @@ export default function SignUp({ onToggle }: SignUpProps) {
             <Controller
               name="phone"
               control={control}
-              rules={{
-                required: "Obrigatório",
-                validate: (v) => validatePhone(v) || "Incompleto",
-              }}
               render={({ field: { onChange, value } }) => (
                 <input
                   type="tel"
@@ -155,17 +132,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
             <div className="relative">
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
-                {...register("birthDate", {
-                  required: "Obrigatória",
-                  validate: (v) => {
-                    const date = new Date(v);
-                    const now = new Date();
-                    const age = now.getFullYear() - date.getFullYear();
-                    if (age < 13) return "Mínimo 13 anos";
-                    if (age > 120) return "Inválida";
-                    return true;
-                  },
-                })}
+                {...register("birthDate")}
                 type="date"
                 className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textSecondary/50 focus:border-primary focus:outline-none transition-colors scheme-dark"
               />
@@ -187,10 +154,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
-                {...register("password", {
-                  required: "Obrigatória",
-                  minLength: { value: 6, message: "Mínimo 6" },
-                })}
+                {...register("password")}
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••"
                 className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -220,10 +184,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
-                {...register("confirmPassword", {
-                  required: "Obrigatória",
-                  validate: (v, fv) => v === fv.password || "Diferentes",
-                })}
+                {...register("confirmPassword")}
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="••••••"
                 className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -250,7 +211,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
 
         <div className="flex items-center gap-2">
           <input
-            {...register("acceptTerms", { required: "Aceite os termos" })}
+            {...register("acceptTerms")}
             type="checkbox"
             id="terms"
             className="w-4 h-4 rounded border-outline bg-surface text-primary focus:ring-primary cursor-pointer"
