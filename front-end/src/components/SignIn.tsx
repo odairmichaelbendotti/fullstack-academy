@@ -96,14 +96,14 @@ export default function SignIn({ onToggle }: SignInProps) {
               className="w-3.5 h-3.5 rounded border-outline bg-surface text-primary focus:ring-primary"
             />
             <span className="text-textSecondary cursor-pointer">
-              lembrar-me
+              Salvar neste navegador
             </span>
           </label>
           <button
             type="button"
             className="text-textSecondary hover:text-primary transition-colors cursor-pointer"
           >
-            esqueceu?
+            Esqueceu sua senha?
           </button>
         </div>
 

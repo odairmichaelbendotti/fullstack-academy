@@ -2,16 +2,7 @@
 
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  User,
-  Phone,
-  Calendar,
-  ChevronRight,
-} from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Calendar } from "lucide-react";
 
 interface SignUpFormData {
   firstName: string;
@@ -60,48 +51,41 @@ export default function SignUp({ onToggle }: SignUpProps) {
         <p className="text-sm text-textSecondary">Comece sua jornada</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        {/* Desktop: 2 columns / Mobile: 1 column */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Nome completo - 2 colunas */}
+        <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs text-textSecondary mb-1">
+            <label className="block text-xs text-textSecondary mb-1.5">
               Nome
             </label>
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
-              <input
-                {...register("firstName", {
-                  required: "Nome obrigatório",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-                type="text"
-                placeholder="Seu nome"
-                className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text"
-              />
-            </div>
+            <input
+              {...register("firstName", {
+                required: "Obrigatório",
+                minLength: { value: 2, message: "Mínimo 2 caracteres" },
+              })}
+              type="text"
+              placeholder="Nome"
+              className="w-full px-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
+            />
             {errors.firstName && (
               <p className="text-xs text-red-500 mt-1">
                 {errors.firstName.message}
               </p>
             )}
           </div>
-
           <div>
-            <label className="block text-xs text-textSecondary mb-1">
+            <label className="block text-xs text-textSecondary mb-1.5">
               Sobrenome
             </label>
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
-              <input
-                {...register("lastName", {
-                  required: "Sobrenome obrigatório",
-                  minLength: { value: 2, message: "Mínimo 2 caracteres" },
-                })}
-                type="text"
-                placeholder="Seu sobrenome"
-                className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text"
-              />
-            </div>
+            <input
+              {...register("lastName", {
+                required: "Obrigatório",
+                minLength: { value: 2, message: "Mínimo 2 caracteres" },
+              })}
+              type="text"
+              placeholder="Sobrenome"
+              className="w-full px-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
+            />
             {errors.lastName && (
               <p className="text-xs text-red-500 mt-1">
                 {errors.lastName.message}
@@ -110,71 +94,9 @@ export default function SignUp({ onToggle }: SignUpProps) {
           </div>
         </div>
 
-        {/* Desktop: 2 columns / Mobile: 1 column */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div>
-            <label className="block text-xs text-textSecondary mb-1">
-              Celular
-            </label>
-            <div className="relative">
-              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
-              <Controller
-                name="phone"
-                control={control}
-                rules={{
-                  required: "Celular obrigatório",
-                  validate: (v) => validatePhone(v) || "Número incompleto",
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <input
-                    type="tel"
-                    value={value || ""}
-                    onChange={(e) => onChange(formatPhone(e.target.value))}
-                    placeholder="(11) 9 9999-9999"
-                    className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text"
-                  />
-                )}
-              />
-            </div>
-            {errors.phone && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.phone.message}
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-xs text-textSecondary mb-1">
-              Data de nascimento
-            </label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
-              <input
-                {...register("birthDate", {
-                  required: "Data obrigatória",
-                  validate: (v) => {
-                    const date = new Date(v);
-                    const now = new Date();
-                    const age = now.getFullYear() - date.getFullYear();
-                    if (age < 13) return "Mínimo 13 anos";
-                    if (age > 120) return "Data inválida";
-                    return true;
-                  },
-                })}
-                type="date"
-                className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text scheme-dark"
-              />
-            </div>
-            {errors.birthDate && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.birthDate.message}
-              </p>
-            )}
-          </div>
-        </div>
-
+        {/* Email - com ícone */}
         <div>
-          <label className="block text-xs text-textSecondary mb-1">
+          <label className="block text-xs text-textSecondary mb-1.5">
             E-mail
           </label>
           <div className="relative">
@@ -189,7 +111,7 @@ export default function SignUp({ onToggle }: SignUpProps) {
               })}
               type="email"
               placeholder="seu@email.com"
-              className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text"
+              className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
             />
           </div>
           {errors.email && (
@@ -197,22 +119,81 @@ export default function SignUp({ onToggle }: SignUpProps) {
           )}
         </div>
 
-        {/* Desktop: 2 columns / Mobile: 1 column */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* Celular e Data - 2 colunas sem ícones */}
+        <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs text-textSecondary mb-1">
+            <label className="block text-xs text-textSecondary mb-1.5">
+              Celular
+            </label>
+            <Controller
+              name="phone"
+              control={control}
+              rules={{
+                required: "Obrigatório",
+                validate: (v) => validatePhone(v) || "Incompleto",
+              }}
+              render={({ field: { onChange, value } }) => (
+                <input
+                  type="tel"
+                  value={value || ""}
+                  onChange={(e) => onChange(formatPhone(e.target.value))}
+                  placeholder="(11) 9 9999-9999"
+                  className="w-full px-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
+                />
+              )}
+            />
+            {errors.phone && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.phone.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <label className="block text-xs text-textSecondary mb-1.5">
+              Nascimento
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+              <input
+                {...register("birthDate", {
+                  required: "Obrigatória",
+                  validate: (v) => {
+                    const date = new Date(v);
+                    const now = new Date();
+                    const age = now.getFullYear() - date.getFullYear();
+                    if (age < 13) return "Mínimo 13 anos";
+                    if (age > 120) return "Inválida";
+                    return true;
+                  },
+                })}
+                type="date"
+                className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textSecondary/50 focus:border-primary focus:outline-none transition-colors scheme-dark"
+              />
+            </div>
+            {errors.birthDate && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.birthDate.message}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Senha - com ícone e toggle */}
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block text-xs text-textSecondary mb-1.5">
               Senha
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
                 {...register("password", {
-                  required: "Senha obrigatória",
-                  minLength: { value: 6, message: "Mínimo 6 caracteres" },
+                  required: "Obrigatória",
+                  minLength: { value: 6, message: "Mínimo 6" },
                 })}
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••"
-                className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text"
+                className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
               />
               <button
                 type="button"
@@ -232,21 +213,20 @@ export default function SignUp({ onToggle }: SignUpProps) {
               </p>
             )}
           </div>
-
           <div>
-            <label className="block text-xs text-textSecondary mb-1">
-              Confirmar senha
+            <label className="block text-xs text-textSecondary mb-1.5">
+              Confirmar
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
                 {...register("confirmPassword", {
-                  required: "Confirme a senha",
-                  validate: (v, fv) => v === fv.password || "Senhas diferentes",
+                  required: "Obrigatória",
+                  validate: (v, fv) => v === fv.password || "Diferentes",
                 })}
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="••••••"
-                className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors cursor-text"
+                className="w-full pl-10 pr-10 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
               />
               <button
                 type="button"
@@ -268,33 +248,32 @@ export default function SignUp({ onToggle }: SignUpProps) {
           </div>
         </div>
 
-        <label className="flex items-start gap-2 cursor-pointer">
+        <div className="flex items-center gap-2">
           <input
             {...register("acceptTerms", { required: "Aceite os termos" })}
             type="checkbox"
-            className="w-3.5 h-3.5 mt-0.5 rounded border-outline bg-surface text-primary focus:ring-primary cursor-pointer"
+            id="terms"
+            className="w-4 h-4 rounded border-outline bg-surface text-primary focus:ring-primary cursor-pointer"
           />
-          <span className="text-xs text-textSecondary leading-relaxed cursor-pointer">
+          <label
+            htmlFor="terms"
+            className="text-xs text-textSecondary cursor-pointer"
+          >
             Aceito os{" "}
             <a href="#" className="text-primary hover:underline">
-              Termos
-            </a>{" "}
-            e{" "}
-            <a href="#" className="text-primary hover:underline">
-              Privacidade
+              Termos de Uso
             </a>
-          </span>
-        </label>
+          </label>
+        </div>
         {errors.acceptTerms && (
           <p className="text-xs text-red-500">{errors.acceptTerms.message}</p>
         )}
 
         <button
           type="submit"
-          className="w-full py-2.5 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors flex items-center justify-center gap-2 group cursor-pointer"
+          className="w-full py-3 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors cursor-pointer"
         >
           Criar conta
-          <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </form>
 

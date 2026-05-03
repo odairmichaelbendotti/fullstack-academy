@@ -34,37 +34,39 @@ export default function SignPage() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="w-full lg:w-2/5 flex flex-col p-6 lg:p-12 bg-surface/30 border-l border-outline">
-        {/* Mobile Logo */}
-        <div className="lg:hidden flex flex-col items-center mb-6">
-          <div className="w-20 h-20 mb-3">
-            <Image
-              src="/logo.png"
-              alt="Fullstack Academy"
-              width={80}
-              height={80}
-              className="object-contain"
-              priority
-            />
+      <div className="w-full lg:w-2/5 flex flex-col min-h-screen bg-surface/30 border-l border-outline">
+        <div className="flex-1 flex flex-col p-6 lg:p-12">
+          {/* Mobile Logo */}
+          <div className="lg:hidden flex flex-col items-center mb-6">
+            <div className="w-20 h-20 mb-3">
+              <Image
+                src="/logo.png"
+                alt="Fullstack Academy"
+                width={80}
+                height={80}
+                className="object-contain"
+                priority
+              />
+            </div>
+            <h1 className="text-lg font-medium text-textPrimary">
+              Fullstack Academy
+            </h1>
           </div>
-          <h1 className="text-lg font-medium text-textPrimary">
-            Fullstack Academy
-          </h1>
+
+          {/* Forms - centered with flex */}
+          <div className="flex-1 flex flex-col justify-center items-center w-full">
+            <div className="w-full max-w-md">
+              {isSignIn ? (
+                <SignIn onToggle={toggleForm} />
+              ) : (
+                <SignUp onToggle={toggleForm} />
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Forms - centered with flex */}
-        <div className="flex-1 flex flex-col justify-center items-center w-full">
-          <div className="w-full max-w-lg">
-            {isSignIn ? (
-              <SignIn onToggle={toggleForm} />
-            ) : (
-              <SignUp onToggle={toggleForm} />
-            )}
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex justify-center pt-8">
+        {/* Footer - shrink-0 keeps it at bottom */}
+        <div className="shrink-0 flex justify-center p-4">
           <p className="text-xs text-textSecondary/50">
             © 2026 Fullstack Academy
           </p>
