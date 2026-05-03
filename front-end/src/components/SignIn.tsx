@@ -5,12 +5,9 @@ import { useForm } from "react-hook-form";
 import { Eye, EyeOff, Mail, Lock, ChevronRight } from "lucide-react";
 import { LoginFormData, loginSchema } from "@/lib/validation/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 
-interface SignInProps {
-  onToggle: () => void;
-}
-
-export default function SignIn({ onToggle }: SignInProps) {
+export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -112,12 +109,12 @@ export default function SignIn({ onToggle }: SignInProps) {
       <div className="mt-6 pt-4 border-t border-outline">
         <p className="w-full text-center text-sm text-textSecondary">
           Não tem conta?{" "}
-          <button
-            onClick={onToggle}
+          <Link
+            href="/sign?mode=signup"
             className="text-primary hover:text-secondary transition-colors cursor-pointer"
           >
             Cadastre-se
-          </button>
+          </Link>
         </p>
       </div>
     </div>

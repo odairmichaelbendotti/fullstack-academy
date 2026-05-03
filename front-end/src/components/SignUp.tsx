@@ -8,10 +8,7 @@ import {
   RegisterFormData,
   registerSchema,
 } from "@/lib/validation/register.schema";
-
-interface SignUpProps {
-  onToggle: () => void;
-}
+import Link from "next/link";
 
 const formatPhone = (value: string): string => {
   const digits = value.replace(/\D/g, "").slice(0, 11);
@@ -20,7 +17,7 @@ const formatPhone = (value: string): string => {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
 };
 
-export default function SignUp({ onToggle }: SignUpProps) {
+export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -241,12 +238,12 @@ export default function SignUp({ onToggle }: SignUpProps) {
       <div className="mt-6 pt-4 border-t border-outline">
         <p className="w-full text-center text-sm text-textSecondary">
           Já tem conta?{" "}
-          <button
-            onClick={onToggle}
+          <Link
+            href="/sign?mode=signin"
             className="text-primary hover:text-secondary transition-colors cursor-pointer"
           >
             Entrar
-          </button>
+          </Link>
         </p>
       </div>
     </div>

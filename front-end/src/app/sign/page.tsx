@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import SignIn from "@/components/SignIn";
 import SignUp from "@/components/SignUp";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function SignPage() {
-  const [isSignIn, setIsSignIn] = useState(true);
-  const toggleForm = () => setIsSignIn(!isSignIn);
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode") || "signin";
+  const isSignIn = mode === "signin";
 
   return (
     <main className="min-h-screen bg-bg flex">
@@ -61,11 +62,7 @@ export default function SignPage() {
           {/* Forms - centered with flex */}
           <div className="flex-1 flex flex-col justify-center items-center w-full">
             <div className="w-full max-w-md">
-              {isSignIn ? (
-                <SignIn onToggle={toggleForm} />
-              ) : (
-                <SignUp onToggle={toggleForm} />
-              )}
+              {isSignIn ? <SignIn /> : <SignUp />}
             </div>
           </div>
         </div>
