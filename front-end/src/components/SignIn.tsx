@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Eye, EyeOff, Mail, Lock, ChevronRight, Sparkles } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  ChevronRight,
+  Sparkles,
+  Loader2,
+} from "lucide-react";
 import { LoginFormData, loginSchema } from "@/lib/validation/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -42,7 +50,6 @@ export default function SignIn() {
         </p>
         <div className="mt-4 h-0.5 w-12 bg-primary rounded-full" />
       </div>
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="block text-xs text-textSecondary mb-1">
@@ -112,13 +119,17 @@ export default function SignIn() {
 
         <button
           type="submit"
-          className="w-full py-2.5 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors flex items-center justify-center gap-2 group cursor-pointer"
+          className="w-full py-2.5 mt-6 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors flex items-center justify-center gap-2 group cursor-pointer"
         >
-          Entrar
-          <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          <div className="flex items-center">
+            {/* <Loader2 className="w-4 h-4 animate-spin" /> */}
+            <div className="flex items-center gap-2">
+              Entrar
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
         </button>
       </form>
-
       <div className="mt-6 pt-4 border-t border-outline">
         <p className="w-full text-center text-sm text-textSecondary">
           Não tem conta?{" "}

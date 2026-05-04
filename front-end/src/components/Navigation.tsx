@@ -67,7 +67,9 @@ const Navigation = () => {
       {/* Lado Direito: Botões e Menu Mobile */}
       <div className="flex items-center gap-4">
         <div className="hidden md:flex items-center gap-3">
-          <Button text="Login" type="ghost" />
+          <Link href="/sign?mode=signin">
+            <Button text="Login" type="ghost" />
+          </Link>
           <Button text="Matricule-se" type="outlinePrimary" />
         </div>
 
@@ -96,9 +98,12 @@ const Navigation = () => {
             ))}
             <hr className="border-outline" />
             <div className="flex flex-col gap-3">
-              <button className="w-full py-3 text-sm font-bold text-textPrimary border border-outline rounded-lg">
+              <Link
+                href="/sign?mode=signin"
+                className="w-full py-3 text-sm font-bold text-textPrimary border border-outline rounded-lg text-center block"
+              >
                 Login
-              </button>
+              </Link>
               <button className="w-full py-3 text-sm font-bold text-bg bg-primary rounded-lg">
                 Quero ser aluno
               </button>

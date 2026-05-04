@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Mail, Lock, Calendar, Rocket } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  Calendar,
+  Rocket,
+  Loader2,
+} from "lucide-react";
 import {
   RegisterFormData,
   registerSchema,
@@ -240,9 +248,12 @@ export default function SignUp() {
 
         <button
           type="submit"
-          className="w-full py-3 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors cursor-pointer"
+          className="flex mt-6 justify-center items-center w-full py-3 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors cursor-pointer"
         >
-          Criar conta
+          <div className="flex items-center">
+            {/* <Loader2 className="w-4 h-4 animate-spin" /> */}
+            <span>Criar conta</span>
+          </div>
         </button>
       </form>
 
