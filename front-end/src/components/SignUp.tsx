@@ -64,10 +64,14 @@ export default function SignUp() {
         {/* Nome completo - 2 colunas */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs text-textSecondary mb-1.5">
+            <label
+              htmlFor="firstName"
+              className="block text-xs text-textSecondary mb-1.5"
+            >
               Nome
             </label>
             <input
+              id="firstName"
               {...register("firstName")}
               type="text"
               placeholder="Nome"
@@ -80,10 +84,14 @@ export default function SignUp() {
             )}
           </div>
           <div>
-            <label className="block text-xs text-textSecondary mb-1.5">
+            <label
+              htmlFor="lastName"
+              className="block text-xs text-textSecondary mb-1.5"
+            >
               Sobrenome
             </label>
             <input
+              id="lastName"
               {...register("lastName")}
               type="text"
               placeholder="Sobrenome"
@@ -99,12 +107,16 @@ export default function SignUp() {
 
         {/* Email - com ícone */}
         <div>
-          <label className="block text-xs text-textSecondary mb-1.5">
+          <label
+            htmlFor="email"
+            className="block text-xs text-textSecondary mb-1.5"
+          >
             E-mail
           </label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
+              id="email"
               {...register("email")}
               type="email"
               placeholder="seu@email.com"
@@ -119,7 +131,10 @@ export default function SignUp() {
         {/* Celular e Data - 2 colunas sem ícones */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs text-textSecondary mb-1.5">
+            <label
+              htmlFor="phone"
+              className="block text-xs text-textSecondary mb-1.5"
+            >
               Celular
             </label>
             <Controller
@@ -127,6 +142,7 @@ export default function SignUp() {
               control={control}
               render={({ field: { onChange, value } }) => (
                 <input
+                  id="phone"
                   type="tel"
                   value={value || ""}
                   onChange={(e) => onChange(formatPhone(e.target.value))}
@@ -142,12 +158,16 @@ export default function SignUp() {
             )}
           </div>
           <div>
-            <label className="block text-xs text-textSecondary mb-1.5">
+            <label
+              htmlFor="birthDate"
+              className="block text-xs text-textSecondary mb-1.5"
+            >
               Nascimento
             </label>
             <div className="relative">
               <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
+                id="birthDate"
                 {...register("birthDate")}
                 type="date"
                 className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textSecondary/50 focus:border-primary focus:outline-none transition-colors scheme-dark"
@@ -164,12 +184,16 @@ export default function SignUp() {
         {/* Senha - com ícone e toggle */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs text-textSecondary mb-1.5">
+            <label
+              htmlFor="password"
+              className="block text-xs text-textSecondary mb-1.5"
+            >
               Senha
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
+                id="password"
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••"
@@ -194,12 +218,16 @@ export default function SignUp() {
             )}
           </div>
           <div>
-            <label className="block text-xs text-textSecondary mb-1.5">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-xs text-textSecondary mb-1.5"
+            >
               Confirme a senha
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
+                id="confirmPassword"
                 {...register("confirmPassword")}
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="••••••"

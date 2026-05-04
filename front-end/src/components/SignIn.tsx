@@ -52,12 +52,16 @@ export default function SignIn() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <label className="block text-xs text-textSecondary mb-1">
+          <label
+            htmlFor="email"
+            className="block text-xs text-textSecondary mb-1"
+          >
             E-mail
           </label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
+              id="email"
               {...register("email")}
               placeholder="seu@email.com"
               className="w-full pl-10 pr-3 py-2.5 bg-surface border border-outline rounded text-sm text-textPrimary placeholder:text-textSecondary/50 focus:border-primary focus:outline-none transition-colors"
@@ -69,10 +73,16 @@ export default function SignIn() {
         </div>
 
         <div>
-          <label className="block text-xs text-textSecondary mb-1">Senha</label>
+          <label
+            htmlFor="password"
+            className="block text-xs text-textSecondary mb-1"
+          >
+            Senha
+          </label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
+              id="password"
               {...register("password")}
               type={showPassword ? "text" : "password"}
               placeholder="••••••"
