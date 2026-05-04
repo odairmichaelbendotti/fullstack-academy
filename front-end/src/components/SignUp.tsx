@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Mail, Lock, Calendar } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Calendar, Rocket } from "lucide-react";
 import {
   RegisterFormData,
   registerSchema,
@@ -35,10 +35,21 @@ export default function SignUp() {
   return (
     <div className="w-full animate-in fade-in slide-in-from-right-4 duration-500">
       <div className="mb-6">
-        <h2 className="text-xl font-medium text-textPrimary mb-1">
-          Criar conta
+        <div className="flex items-center gap-2 mb-3">
+          <div className="px-2.5 py-1 bg-primary/10 border border-primary/20 rounded-full">
+            <span className="text-xs font-medium text-primary flex items-center gap-1.5">
+              <Rocket className="w-3.5 h-3.5" />
+              Novo por aqui?
+            </span>
+          </div>
+        </div>
+        <h2 className="text-2xl font-medium text-textPrimary">
+          Comece sua transformação
         </h2>
-        <p className="text-sm text-textSecondary">Comece sua jornada</p>
+        <p className="text-sm text-textSecondary mt-1">
+          Domine as tecnologias do futuro
+        </p>
+        <div className="mt-4 h-0.5 w-12 bg-primary rounded-full" />
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

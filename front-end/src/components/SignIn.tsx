@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Eye, EyeOff, Mail, Lock, ChevronRight } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ChevronRight, Sparkles } from "lucide-react";
 import { LoginFormData, loginSchema } from "@/lib/validation/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -25,9 +25,22 @@ export default function SignIn() {
 
   return (
     <div className="w-full animate-in fade-in slide-in-from-right-4 duration-500">
-      <div className="mb-2">
-        <h2 className="text-xl font-medium text-textPrimary">Entrar</h2>
-        <p className="text-sm text-textSecondary">Acesse sua conta</p>
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="px-2.5 py-1 bg-primary/10 border border-primary/20 rounded-full">
+            <span className="text-xs font-medium text-primary flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
+              Acesso membros
+            </span>
+          </div>
+        </div>
+        <h2 className="text-2xl font-medium text-textPrimary">
+          Bem-vindo de volta
+        </h2>
+        <p className="text-sm text-textSecondary mt-1">
+          Continue construindo seu futuro tech
+        </p>
+        <div className="mt-4 h-0.5 w-12 bg-primary rounded-full" />
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

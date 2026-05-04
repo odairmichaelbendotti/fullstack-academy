@@ -1,8 +1,12 @@
 import { CreateUserUseCase } from "../../../application/usecases/user/CreateUserUseCase";
 import { Request, Response } from "express";
+import { LoginUseCase } from "../../../application/usecases/user/LoginUseCase";
 
 export class UserController {
-  constructor(private createUserUseCase: CreateUserUseCase) {}
+  constructor(
+    private createUserUseCase: CreateUserUseCase,
+    private loginUseCase: LoginUseCase,
+  ) {}
 
   async create(req: Request, res: Response) {
     try {
@@ -12,6 +16,16 @@ export class UserController {
       if ((error as any).code === "P2002") {
         return res.status(409).json({ error: "Email already exists" });
       }
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(400).json({ error: message });
+    }
+  }
+  async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+    try {
+      const user = await this.loginUseCase.execute(email, password);
+      res.status(200).json(user);
+    } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
       res.status(400).json({ error: message });
     }
