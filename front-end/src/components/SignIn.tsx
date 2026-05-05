@@ -14,9 +14,13 @@ import {
 import { LoginFormData, loginSchema } from "@/lib/validation/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { fetchWrapper } from "@/lib/fetch-wrapper/client";
+import { useUser } from "@/store/user";
+import { toast } from "sonner";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -27,8 +31,31 @@ export default function SignIn() {
     defaultValues: { rememberMe: false },
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
+  const { setUser } = useUser();
+
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      setIsLoading(true);
+      const response = await fetchWrapper({
+        url: "/api/user/login",
+        method: "POST",
+        body: data,
+      });
+
+      if (!response?.ok) {
+        toast.error("Erro ao realizar login");
+        return;
+      }
+
+      const responseData = await response.json();
+      setUser(responseData);
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao realizar login");
+      return;
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -129,14 +156,18 @@ export default function SignIn() {
 
         <button
           type="submit"
+          disabled={isLoading}
           className="w-full py-2.5 mt-6 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors flex items-center justify-center gap-2 group cursor-pointer"
         >
           <div className="flex items-center">
-            {/* <Loader2 className="w-4 h-4 animate-spin" /> */}
-            <div className="flex items-center gap-2">
-              Entrar
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </div>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <div className="flex items-center gap-2">
+                Entrar
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            )}
           </div>
         </button>
       </form>

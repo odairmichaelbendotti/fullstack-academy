@@ -23,7 +23,7 @@ export default function SignPage() {
                 alt="Fullstack Academy"
                 width={128}
                 height={128}
-                className="object-contain opacity-90"
+                className="object-contain opacity-90 w-auto h-auto"
                 priority
               />
             </Link>

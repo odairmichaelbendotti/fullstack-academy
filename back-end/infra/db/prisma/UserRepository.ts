@@ -1,6 +1,6 @@
 import { CreateUserInputDto } from "../../../application/dtos/User";
 import { User } from "../../../domain/entities/User";
-import { IUserRepository } from "../../../domain/reposotories/IUserRepository";
+import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { prisma } from "../../../lib/prisma";
 
 export class PrismaUserRepository implements IUserRepository {

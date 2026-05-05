@@ -3,11 +3,17 @@ import { CreateUserUseCase } from "../application/usecases/user/CreateUserUseCas
 import { UserController } from "../infra/http/controller/UserController";
 import { BcryptHashService } from "../infra/service/BcryptHashService";
 import { LoginUseCase } from "../application/usecases/user/LoginUseCase";
+import { TokenService } from "../infra/service/TokenService";
 
 const repository = new PrismaUserRepository();
 const hashService = new BcryptHashService();
-const createUserUseCase = new CreateUserUseCase(repository, hashService);
-const loginUseCase = new LoginUseCase(repository, hashService);
+const tokenService = new TokenService();
+const createUserUseCase = new CreateUserUseCase(
+  repository,
+  hashService,
+  tokenService,
+);
+const loginUseCase = new LoginUseCase(repository, hashService, tokenService);
 const controller = new UserController(createUserUseCase, loginUseCase);
 
 export { controller };

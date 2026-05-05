@@ -1,15 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import CornerElement from "./FrameContainer/CornerElement";
 import Button from "./Button";
 import Link from "next/link";
+import UserDropDown from "./UserDropDown";
+import { useUser } from "@/store/user";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { user } = useUser();
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -67,10 +70,16 @@ const Navigation = () => {
       {/* Lado Direito: Botões e Menu Mobile */}
       <div className="flex items-center gap-4">
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/sign?mode=signin">
-            <Button text="Login" type="ghost" />
-          </Link>
-          <Button text="Matricule-se" type="outlinePrimary" />
+          {user ? (
+            <UserDropDown />
+          ) : (
+            <>
+              <Link href="/sign?mode=signin">
+                <Button text="Login" type="ghost" />
+              </Link>
+              <Button text="Matricule-se" type="outlinePrimary" />
+            </>
+          )}
         </div>
 
         {/* Toggle Mobile */}

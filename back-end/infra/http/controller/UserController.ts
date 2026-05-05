@@ -10,7 +10,8 @@ export class UserController {
 
   async create(req: Request, res: Response) {
     try {
-      const user = await this.createUserUseCase.execute(req.body);
+      const { user, token } = await this.createUserUseCase.execute(req.body);
+      res.cookie("token", token, { httpOnly: true });
       res.status(201).json(user);
     } catch (error) {
       if ((error as any).code === "P2002") {
@@ -23,7 +24,8 @@ export class UserController {
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
     try {
-      const user = await this.loginUseCase.execute(email, password);
+      const { user, token } = await this.loginUseCase.execute(email, password);
+      res.cookie("token", token, { httpOnly: true });
       res.status(200).json(user);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
