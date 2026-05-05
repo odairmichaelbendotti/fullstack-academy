@@ -17,10 +17,12 @@ import Link from "next/link";
 import { fetchWrapper } from "@/lib/fetch-wrapper/client";
 import { useUser } from "@/store/user";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -49,6 +51,7 @@ export default function SignIn() {
 
       const responseData = await response.json();
       setUser(responseData);
+      router.push("/");
     } catch (error) {
       console.log(error);
       toast.error("Erro ao realizar login");

@@ -101,7 +101,7 @@ export default function UserDropDown({ onLogout }: UserDropDownProps) {
 
           {/* User Info */}
           <div className="flex flex-col items-start">
-            <span className="text-sm font-medium text-textPrimary group-hover:text-primary transition-colors">
+            <span className="text-sm font-medium text-textPrimary transition-colors">
               {userName}
             </span>
             <span className="text-xs text-textSecondary">{userEmail}</span>
