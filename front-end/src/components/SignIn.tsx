@@ -160,7 +160,7 @@ export default function SignIn() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2.5 mt-6 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors flex items-center justify-center gap-2 group cursor-pointer"
+          className="w-full h-10 mt-6 bg-primary hover:bg-secondary text-black font-medium text-sm rounded transition-colors flex items-center justify-center gap-2 group cursor-pointer"
         >
           <div className="flex items-center">
             {isLoading ? (
