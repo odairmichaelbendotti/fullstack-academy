@@ -3,15 +3,7 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  Calendar,
-  Rocket,
-  Loader2,
-} from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Calendar, Rocket } from "lucide-react";
 import {
   RegisterFormData,
   registerSchema,
