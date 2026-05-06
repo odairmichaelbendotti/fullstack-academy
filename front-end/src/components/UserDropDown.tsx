@@ -11,16 +11,41 @@ import {
   //   Settings,
   Sparkles,
 } from "lucide-react";
+import { fetchWrapper } from "@/lib/fetch-wrapper/client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-interface UserDropDownProps {
-  onLogout?: () => void;
-}
-
-export default function UserDropDown({ onLogout }: UserDropDownProps) {
+export default function UserDropDown() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user, setUser } = useUser();
+  const router = useRouter();
+
+  async function handleLogout() {
+    try {
+      const response = await fetchWrapper({
+        url: "/api/user/logout",
+        method: "POST",
+      });
+
+      console.log(response);
+
+      if (!response?.ok) {
+        toast.error("Erro ao fazer logout");
+        return;
+      }
+
+      setUser(null);
+      setIsOpen(false);
+      setIsMobileOpen(false);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao fazer logout");
+      return;
+    }
+  }
 
   const userName = user?.name || "Usuário";
   const userEmail = user?.email || "";
@@ -55,13 +80,6 @@ export default function UserDropDown({ onLogout }: UserDropDownProps) {
       document.body.style.overflow = "unset";
     };
   }, [isMobileOpen]);
-
-  const handleLogout = () => {
-    setUser(null);
-    onLogout?.();
-    setIsOpen(false);
-    setIsMobileOpen(false);
-  };
 
   const menuItems = [
     {
