@@ -1,6 +1,6 @@
-import { CreateUserUseCase } from "../../../application/usecases/user/CreateUserUseCase";
+import { CreateUserUseCase } from "../../../application/usecases/user/CreateUserUseCase.js";
 import { Request, Response } from "express";
-import { LoginUseCase } from "../../../application/usecases/user/LoginUseCase";
+import { LoginUseCase } from "../../../application/usecases/user/LoginUseCase.js";
 
 export class UserController {
   constructor(
@@ -12,13 +12,13 @@ export class UserController {
     try {
       const { user, token } = await this.createUserUseCase.execute(req.body);
       res.cookie("token", token, { httpOnly: true });
-      res.status(201).json(user);
+      return res.status(201).json(user);
     } catch (error) {
       if ((error as any).code === "P2002") {
         return res.status(409).json({ error: "Email already exists" });
       }
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(400).json({ error: message });
+      return res.status(400).json({ error: message });
     }
   }
   async login(req: Request, res: Response) {
@@ -35,5 +35,17 @@ export class UserController {
   async logout(req: Request, res: Response) {
     res.clearCookie("token");
     res.status(200).json({ message: "Logout successful" });
+  }
+  async me(req: Request, res: Response) {
+    try {
+      const { user } = req;
+      if (!user) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+      return res.status(200).json(user);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      return res.status(400).json({ error: message });
+    }
   }
 }

@@ -1,3 +1,14 @@
+export type LoginOutputDto = {
+  id: string;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  birthDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export interface ILoginRepository {
-  login(email: string, password: string): Promise<boolean>;
+  login(user: LoginOutputDto | null): Promise<LoginOutputDto>;
 }
