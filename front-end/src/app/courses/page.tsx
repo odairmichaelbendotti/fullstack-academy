@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { useState } from "react";
 import Card from "@/components/Card";
 import { courseCards } from "@/data/cards";
 
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CoursesPage() {
+export function CoursesPage() {
   return (
     <div className="min-h-screen bg-slate-950 pt-24 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -32,7 +31,8 @@ export default function CoursesPage() {
             Nossos Cursos
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Domine as tecnologias mais demandadas do mercado com cursos práticos e orientados a projetos
+            Domine as tecnologias mais demandadas do mercado com cursos práticos
+            e orientados a projetos
           </p>
         </div>
 
@@ -56,23 +56,29 @@ export default function CoursesPage() {
             </div>
             <h3 className="text-white font-bold mb-2">Conteúdo Prático</h3>
             <p className="text-slate-400 text-sm">
-              Aprenda fazendo com projetos reais que você pode adicionar ao seu portfólio
+              Aprenda fazendo com projetos reais que você pode adicionar ao seu
+              portfólio
             </p>
           </div>
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-500/20 text-blue-400 mb-4">
               <span className="text-xl">👨‍🏫</span>
             </div>
-            <h3 className="text-white font-bold mb-2">Mentoria Especializada</h3>
+            <h3 className="text-white font-bold mb-2">
+              Mentoria Especializada
+            </h3>
             <p className="text-slate-400 text-sm">
-              Receba suporte de especialistas da indústria durante toda sua jornada
+              Receba suporte de especialistas da indústria durante toda sua
+              jornada
             </p>
           </div>
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-500/20 text-yellow-400 mb-4">
               <span className="text-xl">🎓</span>
             </div>
-            <h3 className="text-white font-bold mb-2">Certificado Reconhecido</h3>
+            <h3 className="text-white font-bold mb-2">
+              Certificado Reconhecido
+            </h3>
             <p className="text-slate-400 text-sm">
               Obtenha um certificado que comprove suas competências no mercado
             </p>

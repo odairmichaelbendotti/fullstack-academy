@@ -96,14 +96,14 @@ const Navigation = () => {
         <div className="absolute top-full left-0 w-full bg-surface border-b border-outline z-50 md:hidden animate-in slide-in-from-top duration-300">
           <nav className="flex flex-col p-4 gap-4">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className={`text-base font-medium ${isActive(item.href) ? "text-primary" : "text-textSecondary"}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <hr className="border-outline" />
             <div className="flex flex-col gap-3">

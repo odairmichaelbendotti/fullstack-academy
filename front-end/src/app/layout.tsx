@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConditionalFrame from "@/components/ConditionalFrame";
 import { Toaster } from "sonner";
+import AuthProvider from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -149,7 +150,9 @@ export default function RootLayout({
             }),
           }}
         />
-        <ConditionalFrame>{children}</ConditionalFrame>
+        <ConditionalFrame>
+          <AuthProvider>{children}</AuthProvider>
+        </ConditionalFrame>
         <Toaster position="top-right" />
       </body>
     </html>
