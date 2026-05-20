@@ -36,7 +36,7 @@ const Navigation = () => {
         <div className="relative w-30 h-8">
           <Link href="/">
             <Image
-              src="/logo_v7.png"
+              src="/logo.png"
               alt="Fullstack Academy"
               fill
               sizes="250px"
