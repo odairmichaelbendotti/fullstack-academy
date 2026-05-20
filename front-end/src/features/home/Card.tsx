@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { CardData } from "@/types/card";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { RiArrowRightLine, RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import CornerElement from "@/components/layout/FrameContainer/CornerElement";
 import NavControls from "@/components/ui/NavControls";
 
@@ -42,7 +42,7 @@ const Card = ({
         className="absolute cursor-pointer left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-black/50 backdrop-blur-md border border-outline text-white hover:bg-primary/30 hover:border-primary hover:scale-110 transition-all duration-300"
         aria-label="Anterior"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <RiArrowLeftSLine className="w-6 h-6" />
       </button>
       {/* Seta Direita */}
       <button
@@ -50,7 +50,7 @@ const Card = ({
         className="absolute cursor-pointer right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-black/50 backdrop-blur-md border border-outline text-white hover:bg-primary/30 hover:border-primary hover:scale-110 transition-all duration-300"
         aria-label="Próximo"
       >
-        <ChevronRight className="w-6 h-6" />
+        <RiArrowRightSLine className="w-6 h-6" />
       </button>
       {/* NavControls - Centro horizontal, fundo do card */}
       <div className="absolute left-1/2 bottom-6 -translate-x-1/2 z-20">
@@ -85,7 +85,7 @@ const Card = ({
         <div className="flex items-end">
           <button className="group inline-flex items-center gap-2 px-5 py-2.5 bg-transparent border border-outline text-textPrimary text-sm font-medium hover:bg-surface hover:border-primary transition-all duration-300">
             <span>{card.buttonText || "Saiba mais"}</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <RiArrowRightLine className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>

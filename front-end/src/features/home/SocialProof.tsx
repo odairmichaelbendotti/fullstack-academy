@@ -36,10 +36,12 @@ const testimonials = [
   },
 ];
 
+import Container from "@/components/ui/Container";
+
 const SocialProof = () => {
   return (
     <section className="relative w-full border-t border-outline">
-      <div className="max-w-7xl mx-auto">
+      <Container>
 
         {/* métricas — 2 cols em mobile, 4 em desktop */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-outline">
@@ -88,7 +90,7 @@ const SocialProof = () => {
           ))}
         </div>
 
-      </div>
+      </Container>
     </section>
   );
 };

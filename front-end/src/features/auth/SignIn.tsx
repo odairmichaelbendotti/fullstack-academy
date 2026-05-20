@@ -2,15 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  ChevronRight,
-  Sparkles,
-  Loader2,
-} from "lucide-react";
+import { RiEyeLine, RiEyeOffLine, RiMailLine, RiLockLine, RiArrowRightSLine, RiSparklingLine, RiLoaderLine } from "react-icons/ri";
 import { LoginFormData, loginSchema } from "@/lib/validation/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -67,7 +59,7 @@ export default function SignIn() {
         <div className="flex items-center gap-2 mb-3">
           <div className="px-2.5 py-1 bg-primary/10 border border-primary/20 rounded-full">
             <span className="text-xs font-medium text-primary flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
+              <RiSparklingLine className="w-3.5 h-3.5" />
               Acesso membros
             </span>
           </div>
@@ -89,7 +81,7 @@ export default function SignIn() {
             E-mail
           </label>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+            <RiMailLine className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
               id="email"
               {...register("email")}
@@ -110,7 +102,7 @@ export default function SignIn() {
             Senha
           </label>
           <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+            <RiLockLine className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
               id="password"
               {...register("password")}
@@ -124,9 +116,9 @@ export default function SignIn() {
               className="absolute right-3 top-1/2 -translate-y-1/2 text-textSecondary hover:text-textPrimary transition-colors"
             >
               {showPassword ? (
-                <EyeOff className="w-4 h-4" />
+                <RiEyeOffLine className="w-4 h-4" />
               ) : (
-                <Eye className="w-4 h-4" />
+                <RiEyeLine className="w-4 h-4" />
               )}
             </button>
           </div>
@@ -164,11 +156,11 @@ export default function SignIn() {
         >
           <div className="flex items-center">
             {isLoading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <RiLoaderLine className="w-4 h-4 animate-spin" />
             ) : (
               <div className="flex items-center gap-2">
                 Entrar
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                <RiArrowRightSLine className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </div>
             )}
           </div>

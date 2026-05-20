@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { RiArrowDownSLine, RiMenuLine, RiCloseLine } from "react-icons/ri";
 import CornerElement from "@/components/layout/FrameContainer/CornerElement";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
@@ -59,7 +59,7 @@ const Navigation = () => {
             >
               {item.label}
               {item.hasDropdown && (
-                <ChevronDown size={14} className="text-textSecondary" />
+                <RiArrowDownSLine size={14} className="text-textSecondary" />
               )}
             </Link>
           ))}
@@ -86,7 +86,7 @@ const Navigation = () => {
           className="md:hidden text-textPrimary"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <RiCloseLine size={24} /> : <RiMenuLine size={24} />}
         </button>
       </div>
 

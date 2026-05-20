@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { RiArrowRightLine } from "react-icons/ri";
 import { PrimaryButton } from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 
 const techStack = [
   { src: "/tech-icons/frontend/nextjs.svg",     label: "Next.js" },
@@ -24,7 +25,8 @@ const stats = [
 
 const Hero = () => {
   return (
-    <section className="relative w-full flex flex-col items-center justify-center px-5 md:px-10 pt-16 pb-12 md:pt-24 md:pb-20 overflow-hidden">
+    <section className="relative w-full overflow-hidden pt-16 pb-12 md:pt-24 md:pb-20">
+      <Container className="flex flex-col items-center justify-center">
       {/* Grid decorativo de fundo */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -67,7 +69,7 @@ const Hero = () => {
           className="flex items-center gap-1.5 text-sm font-medium text-textSecondary hover:text-textPrimary transition-colors duration-300 group"
         >
           Explorar cursos
-          <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
+          <RiArrowRightLine size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
         </Link>
       </div>
 
@@ -85,14 +87,14 @@ const Hero = () => {
       </div>
 
       {/* Divisor */}
-      <div className="relative z-10 mt-10 w-full max-w-70 md:max-w-2xl flex items-center gap-3">
+      <div className="relative z-10 mt-10 w-full flex items-center gap-3">
         <div className="flex-1 h-px bg-outline" />
         <span className="text-[10px] text-textSecondary whitespace-nowrap">tecnologias que você vai dominar</span>
         <div className="flex-1 h-px bg-outline" />
       </div>
 
       {/* Carrossel */}
-      <div className="relative z-10 mt-5 w-full max-w-70 md:max-w-2xl">
+      <div className="relative z-10 mt-5 w-full">
         <div className="absolute inset-y-0 left-0 w-10 md:w-16 z-10 pointer-events-none"
           style={{ background: "linear-gradient(to right, var(--bg), transparent)" }} />
         <div className="absolute inset-y-0 right-0 w-10 md:w-16 z-10 pointer-events-none"
@@ -113,6 +115,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      </Container>
     </section>
   );
 };

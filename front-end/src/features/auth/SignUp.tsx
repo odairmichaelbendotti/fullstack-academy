@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Mail, Lock, Calendar, Rocket } from "lucide-react";
+import { RiEyeLine, RiEyeOffLine, RiMailLine, RiLockLine, RiCalendarLine, RiRocketLine } from "react-icons/ri";
 import {
   RegisterFormData,
   registerSchema,
@@ -38,7 +38,7 @@ export default function SignUp() {
         <div className="flex items-center gap-2 mb-3">
           <div className="px-2.5 py-1 bg-primary/10 border border-primary/20 rounded-full">
             <span className="text-xs font-medium text-primary flex items-center gap-1.5">
-              <Rocket className="w-3.5 h-3.5" />
+              <RiRocketLine className="w-3.5 h-3.5" />
               Novo por aqui?
             </span>
           </div>
@@ -106,7 +106,7 @@ export default function SignUp() {
             E-mail
           </label>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+            <RiMailLine className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
             <input
               id="email"
               {...register("email")}
@@ -157,7 +157,7 @@ export default function SignUp() {
               Nascimento
             </label>
             <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+              <RiCalendarLine className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
                 id="birthDate"
                 {...register("birthDate")}
@@ -183,7 +183,7 @@ export default function SignUp() {
               Senha
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+              <RiLockLine className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
                 id="password"
                 {...register("password")}
@@ -197,9 +197,9 @@ export default function SignUp() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-textSecondary hover:text-textPrimary transition-colors cursor-pointer"
               >
                 {showPassword ? (
-                  <EyeOff className="w-4 h-4" />
+                  <RiEyeOffLine className="w-4 h-4" />
                 ) : (
-                  <Eye className="w-4 h-4" />
+                  <RiEyeLine className="w-4 h-4" />
                 )}
               </button>
             </div>
@@ -217,7 +217,7 @@ export default function SignUp() {
               Confirme a senha
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
+              <RiLockLine className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textSecondary" />
               <input
                 id="confirmPassword"
                 {...register("confirmPassword")}
@@ -231,9 +231,9 @@ export default function SignUp() {
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-textSecondary hover:text-textPrimary transition-colors cursor-pointer"
               >
                 {showConfirmPassword ? (
-                  <EyeOff className="w-4 h-4" />
+                  <RiEyeOffLine className="w-4 h-4" />
                 ) : (
-                  <Eye className="w-4 h-4" />
+                  <RiEyeLine className="w-4 h-4" />
                 )}
               </button>
             </div>

@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Card from "@/features/home/Card";
 import Hero from "@/features/home/Hero";
+import AboutPlatform from "@/features/home/AboutPlatform";
 import Tracks from "@/features/home/Tracks";
+import SectionDivider from "@/components/ui/SectionDivider";
 import SocialProof from "@/features/home/SocialProof";
 import { courseCards } from "@/data/cards";
 
@@ -21,6 +23,8 @@ const Page = () => {
   return (
     <main className="w-full">
       <Hero />
+      <SectionDivider />
+      <AboutPlatform />
       <Tracks />
       <SocialProof />
 

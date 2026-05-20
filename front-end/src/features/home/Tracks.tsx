@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { RiArrowRightLine } from "react-icons/ri";
+import Container from "@/components/ui/Container";
 
 type Track = {
   number: string;
@@ -86,7 +87,7 @@ function SquareGrid() {
 const Tracks = () => {
   return (
     <section className="relative w-full border-t border-outline">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-px bg-outline">
+      <Container className="grid grid-cols-1 md:grid-cols-3 gap-px bg-outline px-0!">
         {tracks.map((track) => (
           <div
             key={track.number}
@@ -139,14 +140,14 @@ const Tracks = () => {
               className="relative z-10 mt-auto inline-flex items-center gap-2 text-sm font-semibold text-textSecondary group-hover:text-primary transition-colors duration-300"
             >
               Ver formação
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+              <RiArrowRightLine size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
 
             {/* linha âmbar */}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500 ease-out" />
           </div>
         ))}
-      </div>
+      </Container>
     </section>
   );
 };

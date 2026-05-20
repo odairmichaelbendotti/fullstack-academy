@@ -3,14 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useUser } from "@/store/user";
-import {
-  User,
-  BookOpen,
-  LogOut,
-  ChevronDown,
-  //   Settings,
-  Sparkles,
-} from "lucide-react";
+import { RiUserLine, RiBookOpenLine, RiLogoutBoxRLine, RiArrowDownSLine, RiSparklingLine } from "react-icons/ri";
 import { fetchWrapper } from "@/lib/fetch-wrapper/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -83,13 +76,13 @@ export default function UserDropDown() {
 
   const menuItems = [
     {
-      icon: User,
+      icon: RiUserLine,
       label: "Minha conta",
       href: "/account",
       description: "Gerencie seus dados",
     },
     {
-      icon: BookOpen,
+      icon: RiBookOpenLine,
       label: "Meus cursos",
       href: "/courses",
       description: "Continue aprendendo",
@@ -126,7 +119,7 @@ export default function UserDropDown() {
           </div>
 
           {/* Chevron */}
-          <ChevronDown
+          <RiArrowDownSLine
             className={`w-4 h-4 text-textSecondary transition-transform duration-200 ${
               isOpen ? "rotate-180" : ""
             }`}
@@ -178,7 +171,7 @@ export default function UserDropDown() {
               className="flex items-center gap-2.5 w-full px-2.5 py-2 rounded-lg hover:bg-red-500/10 transition-all duration-200 group/logout cursor-pointer"
             >
               <div className="p-1.5 rounded-lg bg-white/5 group-hover/logout:bg-red-500/20 transition-colors">
-                <LogOut className="w-4 h-4 text-textSecondary group-hover/logout:text-red-400 transition-colors" />
+                <RiLogoutBoxRLine className="w-4 h-4 text-textSecondary group-hover/logout:text-red-400 transition-colors" />
               </div>
               <span className="text-sm font-medium text-textSecondary group-hover/logout:text-red-400 transition-colors">
                 Sair
@@ -189,7 +182,7 @@ export default function UserDropDown() {
           {/* Pro Badge */}
           <div className="px-3 py-1.5 bg-linear-to-r from-primary/10 to-secondary/10 border-t border-outline/50">
             <div className="flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-primary" />
+              <RiSparklingLine className="w-3 h-3 text-primary" />
               <span className="text-xs text-textSecondary">
                 Membro <span className="text-primary font-medium">Pro</span>
               </span>
@@ -264,7 +257,7 @@ export default function UserDropDown() {
                 className="flex items-center gap-4 w-full px-4 py-4 rounded-xl hover:bg-red-500/10 transition-all active:scale-95 mt-2"
               >
                 <div className="p-2.5 rounded-xl bg-white/5">
-                  <LogOut className="w-5 h-5 text-red-400" />
+                  <RiLogoutBoxRLine className="w-5 h-5 text-red-400" />
                 </div>
                 <div>
                   <p className="font-medium text-red-400">Sair</p>
@@ -276,7 +269,7 @@ export default function UserDropDown() {
             {/* Footer */}
             <div className="px-6 py-4 border-t border-outline bg-linear-to-r from-primary/5 to-secondary/5">
               <div className="flex items-center justify-center gap-2">
-                <Sparkles className="w-4 h-4 text-primary" />
+                <RiSparklingLine className="w-4 h-4 text-primary" />
                 <span className="text-sm text-textSecondary">
                   Você é um membro{" "}
                   <span className="text-primary font-semibold">Pro</span>
