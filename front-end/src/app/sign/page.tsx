@@ -5,8 +5,9 @@ import SignIn from "@/features/auth/SignIn";
 import SignUp from "@/features/auth/SignUp";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function SignPage() {
+function SignContent() {
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode") || "signin";
   const isSignIn = mode === "signin";
@@ -75,5 +76,13 @@ export default function SignPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function SignPage() {
+  return (
+    <Suspense>
+      <SignContent />
+    </Suspense>
   );
 }
