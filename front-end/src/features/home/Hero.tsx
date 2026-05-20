@@ -25,7 +25,7 @@ const stats = [
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden pt-16 pb-12 md:pt-24 md:pb-20">
+    <section className="relative w-full overflow-hidden pt-16 pb-6 md:pt-24 md:pb-8">
       {/* Grid decorativo de fundo */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -87,14 +87,14 @@ const Hero = () => {
         </div>
 
         {/* Divisor */}
-        <div className="relative z-10 mt-10 w-full flex items-center gap-3">
+        <div className="relative z-10 mt-8 w-full flex items-center gap-3">
           <div className="flex-1 h-px bg-outline" />
           <span className="text-[10px] text-textSecondary whitespace-nowrap">tecnologias que você vai dominar</span>
           <div className="flex-1 h-px bg-outline" />
         </div>
 
         {/* Carrossel */}
-        <div className="relative z-10 mt-5 w-full">
+        <div className="relative z-10 mt-4 w-full">
           <div className="absolute inset-y-0 left-0 w-10 md:w-16 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to right, var(--bg), transparent)" }} />
           <div className="absolute inset-y-0 right-0 w-10 md:w-16 z-10 pointer-events-none"
