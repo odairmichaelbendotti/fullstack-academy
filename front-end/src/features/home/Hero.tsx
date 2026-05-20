@@ -24,7 +24,7 @@ const stats = [
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[calc(100vh-60px)] flex flex-col items-center justify-center px-4 md:px-10 py-16 md:py-20 overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 md:px-10 py-10 md:py-14 overflow-hidden">
       {/* Grid decorativo de fundo */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -75,7 +75,7 @@ const Hero = () => {
       </div>
 
       {/* Stats */}
-      <div className="relative z-10 mt-10 md:mt-14 flex items-center gap-6 md:gap-12">
+      <div className="relative z-10 mt-8 md:mt-10 flex items-center gap-6 md:gap-12">
         {stats.map((stat, i) => (
           <div key={stat.label} className="flex items-center gap-6 md:gap-12">
             <div className="flex flex-col items-center">
@@ -94,7 +94,7 @@ const Hero = () => {
       </div>
 
       {/* Divisor */}
-      <div className="relative z-10 mt-10 md:mt-14 w-full max-w-xs md:max-w-2xl flex items-center gap-4">
+      <div className="relative z-10 mt-8 md:mt-10 w-full max-w-xs md:max-w-2xl flex items-center gap-4">
         <div className="flex-1 h-px bg-outline" />
         <span className="text-[10px] md:text-xs text-textSecondary whitespace-nowrap">
           tecnologias que você vai dominar

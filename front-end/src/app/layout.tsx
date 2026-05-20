@@ -91,7 +91,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-screen antialiased`}
     >
-      <body className="h-full flex flex-col">
+      <body className="h-full flex flex-col overflow-x-hidden">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
