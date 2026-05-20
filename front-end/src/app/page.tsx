@@ -25,7 +25,9 @@ const Page = () => {
       <Hero />
       <SectionDivider />
       <AboutPlatform />
+      <SectionDivider pattern="grid" height="md" intensity="soft" />
       <Tracks />
+      <SectionDivider pattern="line" color="primary" />
       <SocialProof />
 
       {/* Card com navegação integrada */}

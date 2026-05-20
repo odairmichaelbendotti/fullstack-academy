@@ -154,7 +154,7 @@ const AboutPlatform = () => {
               O que é a Fullstack Academy?
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-textPrimary leading-snug">
-              A plataforma mais completa<br className="hidden md:block" /> de ensino para devs.
+              A plataforma mais completa de ensino para devs.
             </h2>
           </div>
 
@@ -171,31 +171,60 @@ const AboutPlatform = () => {
           </div>
         </div>
 
-        {/* ── COLUNA DIREITA — preview ── */}
+        {/* ── COLUNA DIREITA — preview full-height ── */}
         {/*
           DIMENSÕES PARA AS IMAGENS:
-          Desktop: 560 × 100% da altura da seção (proporção livre, recomendado 16:10)
-          Tamanho ideal: 640 × 480px — salve em /public/previews/
-          Arquivos:
-            /public/previews/formacao.png
-            /public/previews/cursos.png
-            /public/previews/projetos.png
-            /public/previews/comunidade.png
+          Tamanho ideal: 640 × 800px (portrait) ou qualquer altura — object-cover preenche.
+          Arquivos em /public/previews/:
+            formacao.png | cursos.png | projetos.png | comunidade.png
         */}
-        <div className="hidden md:flex md:w-96 lg:w-130 shrink-0 border-l border-outline bg-surface/20 items-center justify-center p-8 lg:p-12">
-          <div
-            key={active}
-            className="w-full relative rounded-lg overflow-hidden border border-outline animate-in fade-in zoom-in-95 duration-300 shadow-2xl shadow-black/40"
-            style={{ aspectRatio: "4/3" }}
-          >
+        <div className="hidden md:block md:w-96 lg:w-130 shrink-0 border-l border-outline relative overflow-hidden">
+          {/* imagem — ocupa 100% da coluna */}
+          <div key={active} className="absolute inset-0 animate-in fade-in duration-500">
             {current.image ? (
-              <Image src={current.image.src} alt={current.image.alt} fill className="object-cover" />
+              <Image
+                src={current.image.src}
+                alt={current.image.alt}
+                fill
+                className="object-cover"
+              />
             ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface">
-                <span className="text-textSecondary/20">{current.icon}</span>
-                <p className="text-xs text-textSecondary/30 font-mono">640 × 480px</p>
+              <div className="absolute inset-0 bg-surface flex flex-col items-center justify-center gap-3">
+                <span className="text-textSecondary/20 text-5xl">{current.icon}</span>
+                <p className="text-xs text-textSecondary/30 font-mono">640 × 800px</p>
               </div>
             )}
+
+            {/* overlay escuro sobre a imagem */}
+            <div className="absolute inset-0 bg-bg/40" />
+
+            {/* gradiente rodapé — base para a legenda */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-48"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 100%)" }}
+            />
+
+            {/* legenda */}
+            <div className="absolute inset-x-0 bottom-0 p-8">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-primary">{current.icon}</span>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-primary">
+                  {current.title}
+                </span>
+              </div>
+              <p className="text-sm text-textPrimary/80 leading-relaxed line-clamp-2">
+                {current.description}
+              </p>
+              {current.cta && (
+                <Link
+                  href={current.cta.href}
+                  className="inline-flex items-center gap-1.5 mt-3 text-xs font-semibold text-primary hover:text-secondary transition-colors duration-200 group/img"
+                >
+                  {current.cta.text}
+                  <RiArrowRightLine size={12} className="group-hover/img:translate-x-1 transition-transform duration-200" />
+                </Link>
+              )}
+            </div>
           </div>
         </div>
 
