@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { CardData } from "@/types/card";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import CornerElement from "./FrameContainer/CornerElement";
-import NavControls from "./NavControls";
+import CornerElement from "@/components/layout/FrameContainer/CornerElement";
+import NavControls from "@/components/ui/NavControls";
 
 type CardProps = {
   card: CardData;

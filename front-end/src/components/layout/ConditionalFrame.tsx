@@ -1,8 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import FrameContainer from "./FrameContainer/FrameContainer";
-import CornerElement from "./FrameContainer/CornerElement";
+import FrameContainer from "@/components/layout/FrameContainer/FrameContainer";
 
 interface ConditionalFrameProps {
   children: React.ReactNode;
@@ -16,11 +15,5 @@ export default function ConditionalFrame({ children }: ConditionalFrameProps) {
     return <>{children}</>;
   }
 
-  return (
-    <FrameContainer>
-      <CornerElement position="bottom-left" />
-      <CornerElement position="bottom-right" />
-      {children}
-    </FrameContainer>
-  );
+  return <FrameContainer>{children}</FrameContainer>;
 }

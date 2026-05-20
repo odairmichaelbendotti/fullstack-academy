@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Card from "@/components/Card";
+import Card from "@/features/home/Card";
+import Hero from "@/features/home/Hero";
+import Tracks from "@/features/home/Tracks";
+import SocialProof from "@/features/home/SocialProof";
 import { courseCards } from "@/data/cards";
 
 const Page = () => {
@@ -17,9 +20,9 @@ const Page = () => {
 
   return (
     <main className="w-full">
-      <div className="h-105">
-        <p>Odair</p>
-      </div>
+      <Hero />
+      <Tracks />
+      <SocialProof />
 
       {/* Card com navegação integrada */}
       <Card

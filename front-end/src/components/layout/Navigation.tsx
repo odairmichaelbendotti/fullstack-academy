@@ -3,10 +3,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
-import CornerElement from "./FrameContainer/CornerElement";
-import Button from "./Button";
+import CornerElement from "@/components/layout/FrameContainer/CornerElement";
+import Button from "@/components/ui/Button";
 import Link from "next/link";
-import UserDropDown from "./UserDropDown";
+import UserDropDown from "@/features/auth/UserDropDown";
 import { useUser } from "@/store/user";
 
 const Navigation = () => {
@@ -45,7 +45,6 @@ const Navigation = () => {
             />
           </Link>
         </div>
-
         {/* Menu Desktop */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (

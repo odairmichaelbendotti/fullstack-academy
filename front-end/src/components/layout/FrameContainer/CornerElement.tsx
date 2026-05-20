@@ -20,7 +20,7 @@ function getCornerPosition(position: string) {
 const CornerElement = ({ position }: CornerElementoType) => {
   return (
     <div
-      className={`absolute h-4 w-4 border text-outline ${getCornerPosition(position)}`}
+      className={`absolute h-4 w-4 border border-outline ${getCornerPosition(position)}`}
     ></div>
   );
 };

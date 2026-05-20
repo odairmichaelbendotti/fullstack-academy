@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import SignIn from "@/components/SignIn";
-import SignUp from "@/components/SignUp";
+import SignIn from "@/features/auth/SignIn";
+import SignUp from "@/features/auth/SignUp";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
