@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Card from "@/components/Card";
-import { courseCards } from "@/data/cards";
 
 export const metadata: Metadata = {
   title: "Cursos de Programação",
