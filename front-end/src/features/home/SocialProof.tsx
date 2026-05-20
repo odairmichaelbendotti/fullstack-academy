@@ -1,6 +1,6 @@
 const stats = [
   { value: "847+", label: "Alunos formados" },
-  { value: "92%", label: "Empregados em até 3 meses" },
+  { value: "92%",  label: "Empregados em 3 meses" },
   { value: "4.9★", label: "Avaliação média" },
   { value: "200+", label: "Horas de conteúdo" },
 ];
@@ -38,17 +38,17 @@ const testimonials = [
 
 const SocialProof = () => {
   return (
-    <section className="relative w-full border-t border-outline px-4 md:px-10 py-20">
+    <section className="relative w-full border-t border-outline">
       <div className="max-w-7xl mx-auto">
 
-        {/* métricas */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-outline mb-px">
+        {/* métricas — 2 cols em mobile, 4 em desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-outline">
           {stats.map((stat) => (
-            <div key={stat.label} className="bg-bg px-8 py-10 flex flex-col items-center text-center">
-              <span className="text-4xl md:text-5xl font-black text-primary leading-none mb-2">
+            <div key={stat.label} className="bg-bg px-5 py-8 md:px-8 md:py-10 flex flex-col items-center text-center">
+              <span className="text-3xl md:text-5xl font-black text-primary leading-none mb-1.5">
                 {stat.value}
               </span>
-              <span className="text-xs text-textSecondary font-medium tracking-wide">
+              <span className="text-[11px] md:text-xs text-textSecondary font-medium leading-snug">
                 {stat.label}
               </span>
             </div>
@@ -60,26 +60,26 @@ const SocialProof = () => {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="group bg-bg hover:bg-surface transition-colors duration-300 p-8 flex flex-col gap-5"
+              className="bg-bg p-5 md:p-8 flex flex-col gap-4"
             >
-              {/* aspas decorativas */}
-              <span className="text-5xl font-black text-primary/20 leading-none select-none -mb-3">
+              {/* aspas */}
+              <span className="text-4xl font-black text-primary/20 leading-none select-none -mb-2">
                 "
               </span>
 
               {/* texto */}
-              <p className="text-sm md:text-base text-textSecondary leading-relaxed flex-1">
+              <p className="text-sm text-textSecondary leading-relaxed flex-1">
                 {t.text}
               </p>
 
               {/* autor */}
-              <div className="flex items-center gap-3 pt-4 border-t border-outline">
-                <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 pt-3 border-t border-outline">
+                <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                   <span className="text-xs font-bold text-primary">{t.initials}</span>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-textPrimary">{t.name}</p>
-                  <p className="text-xs text-textSecondary">
+                  <p className="text-sm font-semibold text-textPrimary leading-tight">{t.name}</p>
+                  <p className="text-xs text-textSecondary mt-0.5">
                     {t.role} · <span className="text-primary">{t.company}</span>
                   </p>
                 </div>

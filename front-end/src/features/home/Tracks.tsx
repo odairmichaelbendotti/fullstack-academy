@@ -55,26 +55,27 @@ const tracks: Track[] = [
     href: "/formation",
     mainIcon: { src: "/tech-icons/infrastructure/docker.svg", label: "Docker" },
     techs: [
-      { src: "/tech-icons/tools/github.svg",           label: "GitHub" },
-      { src: "/tech-icons/infrastructure/aws.svg",     label: "AWS" },
-      { src: "/tech-icons/database/postgresql.svg",    label: "PostgreSQL" },
+      { src: "/tech-icons/tools/github.svg",              label: "GitHub" },
+      { src: "/tech-icons/infrastructure/aws.svg",        label: "AWS" },
+      { src: "/tech-icons/database/postgresql.svg",       label: "PostgreSQL" },
       { src: "/tech-icons/infrastructure/kubernetes.svg", label: "Kubernetes" },
     ],
     badgeClass: "text-orange-400 border-orange-400/30 bg-orange-400/10",
   },
 ];
 
-/* grid quadriculado — canto inferior esquerdo, fade via mask-image (independe da cor de fundo) */
 function SquareGrid() {
   return (
     <div
-      className="absolute bottom-0 left-0 w-56 h-44 pointer-events-none opacity-[0.09]"
+      className="absolute bottom-0 left-0 w-48 h-36 pointer-events-none opacity-[0.09]"
       style={{
         backgroundImage:
           "linear-gradient(var(--textPrimary) 1px, transparent 1px), linear-gradient(90deg, var(--textPrimary) 1px, transparent 1px)",
         backgroundSize: "28px 28px",
-        WebkitMaskImage: "linear-gradient(to right, black 0%, transparent 85%), linear-gradient(to top, black 0%, transparent 80%)",
-        maskImage: "linear-gradient(to right, black 0%, transparent 85%), linear-gradient(to top, black 0%, transparent 80%)",
+        WebkitMaskImage:
+          "linear-gradient(to right, black 0%, transparent 85%), linear-gradient(to top, black 0%, transparent 80%)",
+        maskImage:
+          "linear-gradient(to right, black 0%, transparent 85%), linear-gradient(to top, black 0%, transparent 80%)",
         WebkitMaskComposite: "destination-in",
         maskComposite: "intersect",
       }}
@@ -84,64 +85,50 @@ function SquareGrid() {
 
 const Tracks = () => {
   return (
-    <section className="relative w-full border-t border-outline px-4 md:px-10 py-20">
+    <section className="relative w-full border-t border-outline">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-px bg-outline">
         {tracks.map((track) => (
           <div
             key={track.number}
-            className="group relative bg-bg p-8 md:p-10 flex flex-col overflow-hidden"
+            className="group relative bg-bg p-6 md:p-10 flex flex-col overflow-hidden min-h-0"
           >
-            {/* grid quadriculado — canto superior direito */}
             <SquareGrid />
 
-
-            {/* número tipográfico */}
-            <span className="absolute bottom-6 right-6 text-[96px] font-black text-outline/40 select-none leading-none pointer-events-none group-hover:text-outline/20 transition-colors duration-500">
+            {/* número tipográfico — menor em mobile */}
+            <span className="absolute bottom-4 right-4 text-[64px] md:text-[96px] font-black text-outline/40 select-none leading-none pointer-events-none group-hover:text-outline/20 transition-colors duration-500">
               {track.number}
             </span>
 
-            {/* ícone principal — absoluto, canto superior direito, abaixo da grade */}
-            <div className="absolute top-6 right-6 z-1 w-28 h-28 opacity-15 group-hover:opacity-25 transition-opacity duration-500 pointer-events-none">
-              <Image
-                src={track.mainIcon.src}
-                alt={track.mainIcon.label}
-                fill
-                className="object-contain"
-              />
+            {/* ícone principal */}
+            <div className="absolute top-5 right-5 z-1 w-20 h-20 md:w-28 md:h-28 opacity-15 group-hover:opacity-25 transition-opacity duration-500 pointer-events-none">
+              <Image src={track.mainIcon.src} alt={track.mainIcon.label} fill className="object-contain" />
             </div>
 
             {/* badge */}
-            <span className={`relative z-10 w-fit text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-full border mb-4 ${track.badgeClass}`}>
+            <span className={`relative z-10 w-fit text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full border mb-3 ${track.badgeClass}`}>
               {track.label}
             </span>
 
             {/* título */}
-            <h3 className="relative z-10 text-xl md:text-2xl font-bold text-textPrimary leading-snug mb-3">
+            <h3 className="relative z-10 text-lg md:text-2xl font-bold text-textPrimary leading-snug mb-2">
               {track.title}
             </h3>
 
             {/* descrição */}
-            <p className="relative z-10 text-sm text-textSecondary leading-relaxed mb-8">
+            <p className="relative z-10 text-sm text-textSecondary leading-relaxed mb-6">
               {track.description}
             </p>
 
-            {/* ícones de tecnologia — com tooltip */}
-            <div className="relative z-10 flex items-center gap-5 mb-10">
+            {/* ícones de tecnologia — label sempre visível em mobile */}
+            <div className="relative z-10 flex items-end gap-4 mb-6">
               {track.techs.map((tech) => (
-                <div key={tech.label} className="group/tech relative flex flex-col items-center">
-                  <div className="w-7 h-7 relative opacity-40 group-hover:opacity-70 group-hover/tech:opacity-100 transition-opacity duration-300">
-                    <Image
-                      src={tech.src}
-                      alt={tech.label}
-                      fill
-                      className="object-contain"
-                    />
+                <div key={tech.label} className="group/tech relative flex flex-col items-center gap-1">
+                  <div className="w-6 h-6 md:w-7 md:h-7 relative opacity-40 group-hover:opacity-70 group-hover/tech:opacity-100 transition-opacity duration-300">
+                    <Image src={tech.src} alt={tech.label} fill className="object-contain" />
                   </div>
-                  {/* tooltip */}
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-surface border border-outline rounded text-[10px] font-medium text-textPrimary whitespace-nowrap opacity-0 group-hover/tech:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  <span className="text-[9px] md:text-[10px] text-textSecondary/60 group-hover/tech:text-textSecondary transition-colors duration-200">
                     {tech.label}
-                    <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-outline" />
-                  </div>
+                  </span>
                 </div>
               ))}
             </div>
@@ -152,13 +139,10 @@ const Tracks = () => {
               className="relative z-10 mt-auto inline-flex items-center gap-2 text-sm font-semibold text-textSecondary group-hover:text-primary transition-colors duration-300"
             >
               Ver formação
-              <ArrowRight
-                size={15}
-                className="group-hover:translate-x-1 transition-transform duration-300"
-              />
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
 
-            {/* linha âmbar — cresce da esquerda no hover */}
+            {/* linha âmbar */}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500 ease-out" />
           </div>
         ))}
