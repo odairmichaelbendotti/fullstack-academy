@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Card from "@/features/home/Card";
 import Hero from "@/features/home/Hero";
+import CompanyBar from "@/features/home/CompanyBar";
 import AboutPlatform from "@/features/home/AboutPlatform";
 import Tracks from "@/features/home/Tracks";
 import SectionDivider from "@/components/ui/SectionDivider";
@@ -23,6 +24,7 @@ const Page = () => {
   return (
     <main className="w-full">
       <Hero />
+      <CompanyBar />
       <SectionDivider />
       <AboutPlatform />
       <SectionDivider pattern="grid" height="md" intensity="soft" />

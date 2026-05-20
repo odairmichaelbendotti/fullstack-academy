@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RiArrowRightLine } from "react-icons/ri";
-import Container from "@/components/ui/Container";
 
 type Track = {
   number: string;
@@ -118,7 +117,7 @@ function GraphNode({ label, x, y }: { label: string; x: string; y: string }) {
 const Tracks = () => {
   return (
     <section className="relative w-full border-t border-outline">
-      <Container className="grid grid-cols-1 md:grid-cols-3 gap-px bg-outline px-0!">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-outline">
         {tracks.map((track) => (
           <div
             key={track.number}
@@ -198,7 +197,7 @@ const Tracks = () => {
           <div className="relative z-10 flex flex-col p-6 md:p-12 md:w-[55%]">
 
             {/* topo: badges */}
-            <div className="flex items-center gap-2 mb-8 flex-wrap">
+            <div className="flex items-center gap-2 mb-5 md:mb-8 flex-wrap">
               <span className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full border border-primary bg-primary/15 text-primary shadow-lg shadow-primary/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                 Em breve
@@ -209,24 +208,25 @@ const Tracks = () => {
             </div>
 
             {/* headline principal */}
-            <div className="mb-6">
-              <p className="text-xs font-mono text-primary/50 tracking-widest uppercase mb-3">
+            <div className="mb-4 md:mb-6">
+              <p className="text-[10px] font-mono text-primary/50 tracking-widest uppercase mb-2 md:mb-3">
                 04 — Fullstack MCP + IA
               </p>
-              <h3 className="text-3xl md:text-5xl font-black text-textPrimary leading-[1.1] tracking-tight mb-2">
-                Construa o futuro
+              <h3 className="text-3xl md:text-5xl font-black leading-[1.1] tracking-tight mb-2">
+                <span className="text-primary">Fullstack</span>{" "}
+                <span className="text-textPrimary">do jeito certo.</span>
               </h3>
-              <h3 className="text-3xl md:text-5xl font-black leading-[1.1] tracking-tight">
-                com <span className="text-primary">MCP</span> e <span className="text-primary">IA.</span>
+              <h3 className="text-lg md:text-2xl font-bold text-textSecondary leading-snug tracking-tight">
+                Com <span className="text-primary">IA</span> e <span className="text-primary">MCP</span> no centro.
               </h3>
             </div>
 
-            <p className="text-sm md:text-base text-textSecondary leading-relaxed mb-8 max-w-lg">
+            <p className="text-sm md:text-base text-textSecondary leading-relaxed mb-5 md:mb-8 max-w-lg">
               A próxima fronteira do desenvolvimento. Aprenda a orquestrar LLMs com o <strong className="text-textPrimary font-semibold">Model Context Protocol</strong>, construir agentes autônomos, pipelines RAG e entregar produtos reais com Inteligência Artificial — do zero ao deploy.
             </p>
 
             {/* pills de tech */}
-            <div className="flex flex-wrap gap-2 mb-10">
+            <div className="flex flex-wrap gap-2 mb-6 md:mb-10">
               {[
                 { label: "MCP Protocol",  hot: true },
                 { label: "Claude API",    hot: true },
@@ -259,7 +259,7 @@ const Tracks = () => {
           </div>
 
           {/* ── GRAFO — direita ── */}
-          <div className="relative md:flex-1 h-56 md:h-auto border-t md:border-t-0 md:border-l border-outline/30 overflow-hidden">
+          <div className="relative md:flex-1 h-44 md:h-auto border-t md:border-t-0 md:border-l border-outline/30 overflow-hidden">
 
             {/* grade de fundo sutil */}
             <div
@@ -305,7 +305,7 @@ const Tracks = () => {
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-700 ease-out" />
         </div>
 
-      </Container>
+      </div>
     </section>
   );
 };
