@@ -6,12 +6,12 @@ type FrameContainer = {
 
 const FrameContainer = ({ children }: FrameContainer) => {
   return (
-    <div className="max-w-412.5 mx-auto grid w-full grid-cols-[1px_1fr_1px]">
+    <div className="w-full flex justify-center">
       {/* Trilho esquerdo */}
-      <div className="border-l border-outline" />
+      <div className="w-px shrink-0 border-l border-outline" />
 
-      {/* Conteúdo principal */}
-      <div className="relative">
+      {/* Conteúdo principal — largura máxima real */}
+      <div className="relative w-full max-w-400 min-w-0">
         <Navigation />
         <div className="w-full">
           {children}
@@ -19,7 +19,7 @@ const FrameContainer = ({ children }: FrameContainer) => {
       </div>
 
       {/* Trilho direito */}
-      <div className="border-r border-outline" />
+      <div className="w-px shrink-0 border-r border-outline" />
     </div>
   );
 };
