@@ -1,7 +1,7 @@
-import { CreateUserInputDto } from "../../../application/dtos/User";
-import { User } from "../../../domain/entities/User";
-import { IUserRepository } from "../../../domain/repositories/IUserRepository";
-import { prisma } from "../../../lib/prisma";
+import { CreateUserInputDto } from "../../../application/dtos/User.js";
+import { User } from "../../../domain/entities/User.js";
+import { IUserRepository } from "../../../domain/repositories/IUserRepository.js";
+import { prisma } from "../../../lib/prisma.js";
 
 export class PrismaUserRepository implements IUserRepository {
   async create(user: CreateUserInputDto): Promise<User> {
@@ -31,5 +31,17 @@ export class PrismaUserRepository implements IUserRepository {
     }
 
     return new User(user);
+  }
+
+  async findByNameVulnerable(name: string): Promise<User[]> {
+    const query = `SELECT * FROM "User" WHERE name = '${name}'`;
+    const users = await prisma.$queryRawUnsafe(query);
+    return users as User[];
+  }
+
+  async findByNameSecure(name: string): Promise<User[]> {
+    const users =
+      await prisma.$queryRaw`SELECT * FROM "User" WHERE name = ${name}`;
+    return users as User[];
   }
 }
